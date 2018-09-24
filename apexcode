@@ -1,0 +1,82 @@
+trigger TriggerOnCandidate on Candidate__c (before insert, After insert,after delete, after update) 
+{
+    List<Candidate__c> CanList=Trigger.new;
+    Set<string> Cslist=new Set<string>();
+    Set<string> CNames=new Set<string>();
+    Map<Id,Job__c> joblist=new Map<Id,Job__c>();
+    
+    public string jName='';
+    public ID jobId ;
+    boolean flag=true;
+    date appliedDate, currentDate;
+    Public integer diffDate;
+    //BEFORE-INSERT LOGIC
+	if(Trigger.IsInsert)
+    {
+        if(Trigger.IsBefore)
+        {
+            integer countJob=0;
+            Trigger.New[0].No_Job__c = Trigger.New[0].No_Job__c + 1;
+            
+            for(Job__c job :[select Id,Name from Job__c])
+            {
+					joblist.put(job.Id,job);
+            }
+            
+            Date sd;
+    		string cname;
+            for(Candidate__c cd: CanList)
+            {
+                Cslist.add(cd.Mdetails__c);
+                CNames.add(cd.Candidate_Name__c);
+                cname=cd.Candidate_Name__c;
+                sd=cd.Apply_On__c;
+            }
+            integer months;
+            for(Candidate__c cr:[select Apply_On__c from Candidate__c where Mdetails__c In :Cslist AND Candidate_Name__c In : CNames ])
+            {
+                Date fd =cr.Apply_On__c;
+                months=fd.monthsBetween(sd);
+        
+            }
+            integer count=0;
+            for(Candidate__c jbs :[select Mdetails__c  from Candidate__c where Candidate_Name__c In : CNames])
+            {  
+                    if(joblist.containsKey(jbs.Mdetails__c))
+                    {               
+                        count++;
+                    }              
+            }
+            if(months <=6)
+            {
+                
+                Trigger.new[0].Mdetails__c.addError('You cannot apply for this job within 6 months');
+                
+            }
+   		    else if(count > 1)
+            {
+            	Trigger.new[0].Candidate_Name__c.addError('You are not Eligible for this Job.'); 
+            }            
+        }
+    }
+    
+    if(Trigger.IsUpdate)
+    {
+        if(Trigger.IsAfter)
+        {
+            for(Candidate__c candidate : Trigger.New)
+            {        	    
+                Job__c jobRecord = [select Hired_Candidate__c from Job__c where ID=:Trigger.New[0].Mdetails__c]; 
+                if(string.valueOf(Trigger.New[0].Status__c)=='Hired' && string.valueOf(Trigger.old[0].Status__c)!= string.valueOf(Trigger.New[0].Status__c))
+                {                    
+                    jobRecord.Hired_Candidate__c = integer.valueOf(jobRecord.Hired_Candidate__c) + 1;                   
+                }
+                else if(string.valueOf(Trigger.New[0].Status__c)!='Hired' && Integer.valueOf(jobRecord.Hired_Candidate__c)>0)
+                {
+                    jobRecord.Hired_Candidate__c = integer.valueOf(jobRecord.Hired_Candidate__c) - 1;
+                }
+                update jobRecord;
+            }
+        }
+    }
+}
