@@ -1,0 +1,150 @@
+<apex:page docType="html-5.0"  controller="ControllerRegistration">
+    <apex:slds />
+    <apex:includeScript value="{!$Resource.Ligthning_CSS_Files_1}"/>
+
+    <style>
+        h1{
+        	color:#444444;
+        	text-shadow:0px 5px 5px #bbbbbb;
+        }
+        hr{
+        	width:400px;
+        	color:#dddddd;
+        }
+        span{
+        	color:#666666;
+        	font-size:20px;
+        }
+        .pba{
+        	font-size:small;
+        }
+        .btn{
+        	height:32px;
+        	width:130px;
+        }
+        .nextBtn
+        {
+        	height:32px;
+        	width:130px;
+        	color:white;backgorund:#444444;
+        }
+        .errmsg{
+           font-size:small;
+        //margin-left:-130px;
+        }
+        .errmsg1{
+           font-size:small;
+        // margin-left:-380px;
+        }
+    </style>
+    
+    <apex:form style="padding:20px 20px 20px 20px;" styleClass="slds-theme_inverse">
+        <apex:pageBlock >
+            <apex:pageBlocksection >
+                <apex:image value="https://c.ap4.content.force.com/servlet/servlet.FileDownload?file=0156F00000FRWz0" width="220" height="80"/>              
+            </apex:pageBlocksection>         
+            <div align="center">
+              <h1 class="slds-text-heading_large">(Git-Hub) Job Registration - (Step 1)</h1>
+            </div> 
+        </apex:pageBlock>
+         <div style="background:#efefef;border-radius:5px;padding:20px 20px 20px 20px;" class="slds-scope">
+             <div class="slds-grid slds-wrap">
+                 <div class="slds-col slds-size_6-of-12">
+                    <div styleclass="slds-form-element" for="text-input-id-1">                         
+                        <label class="slds-form-element__label" for="text-input-id-1">
+                            Job Name : <span style="color:red;font-size:large;">*</span> 
+                        </label>   
+                        <apex:outputText value="{!errJobName}" styleClass="slds-text-color_error errmsg" />
+                        <div class="slds-form-element__control">
+                            <apex:inputText value="{!jobName}" styleclass="slds-input" style="width:210px;" ID="text-input-id-1"/>
+                        </div>
+                    </div>
+                 </div>
+                 <div class="slds-col slds-size_6-of-12">
+                   <div styleclass="slds-form-element">                       
+                        <label class="slds-form-element__label" for="text-input-id-2">
+                           Manager :  <span style="color:red;font-size:large;">*</span> 
+                        </label>  
+                       <apex:outputText value="fieljlkjl" styleClass="slds-text-color_error errmsg" />
+                        <div class="slds-form-element__control">
+                            <apex:inputText value="{!jobManager}" styleclass="slds-input" style="width:210px;" ID="text-input-id-2" />
+                        </div>
+                   </div>
+                 </div>
+                 <div class="slds-col slds-size_6-of-12">
+                     <div styleclass="slds-form-element">                          
+                            <label class="slds-form-element__label" for="text-input-id-3">
+                                &nbsp;&nbsp;&nbsp;Job Type :  <span style="color:red;font-size:large;">*</span> 
+                            </label> 
+                            <apex:outputText value="{!errJobType}" styleClass="slds-text-color_error errmsg1" />
+                            <div class="slds-form-element__control">
+                                <apex:selectList size="1" value="{!jobType}" styleclass="slds-select" style="width:210px;" ID="text-input-id-3">
+                                      <apex:selectOptions value="{!jobTypeList }"/>
+                                </apex:selectList>
+                            </div>  
+                     </div>
+                 </div>
+                 <div class="slds-col slds-size_6-of-12">
+                     <div styleclass="slds-form-element">
+                            <label class="slds-form-element__label" for="text-input-id-4">
+                                &nbsp;&nbsp;&nbsp;Description : 
+                            </label>                                       
+                            <div class="slds-form-element__control">
+                                <apex:inputTextarea styleclass="slds-textarea" value="{!jobDescription}" style="width:210px;"/>
+                            </div>
+                    </div>
+                 </div>
+                 <div class="slds-col slds-size_6-of-12">
+                    <div styleclass="slds-form-element">                          
+                            <label class="slds-form-element__label" for="text-input-id-5">
+                                &nbsp;&nbsp;&nbsp;Contact :  <span style="color:red;font-size:large;">*</span>
+                            </label>   
+                            <apex:outputText value="fieljlkjl" styleClass="slds-text-color_error errmsg1" />
+                            <div class="slds-form-element__control">
+                                <apex:inputText styleclass="slds-input" value="{!jobContact}" style="width:210px;"/>
+                            </div> 
+                    </div>
+                 </div>
+                 <div class="slds-col slds-size_6-of-12">
+                     <div styleclass="slds-form-element">
+                            <label class="slds-form-element__label" for="text-input-id-6">
+                                &nbsp;&nbsp;&nbsp;Salary Offered : 
+                            </label>                                       
+                            <div class="slds-form-element__control">
+                                <apex:inputText styleclass="slds-input" value="{!jobSalary}" style="width:210px;" />
+                            </div> 
+                     </div>
+                 </div>
+                 <div class="slds-col slds-size_6-of-12">
+                    <div styleclass="slds-form-element">                          
+                            <label class="slds-form-element__label" for="text-input-id-7">
+                                &nbsp;&nbsp;&nbsp;No Of position  : <span style="color:red;font-size:large;">*</span>
+                            </label>     
+                            <apex:outputText value="fieljlkjl" styleClass="slds-text-color_error errmsg1" />
+                            <div class="slds-form-element__control">
+                                <apex:inputText styleclass="slds-input" value="{!jobPosition}" style="width:210px;" />
+                            </div>
+                    </div> 
+                 </div>
+                 <div class="slds-col slds-size_6-of-12">
+                    <div styleclass="slds-form-element">                           
+                		<label class="slds-form-element__label" for="text-input-id-8">
+                            Expiry Date : <span style="color:red;font-size:large;">*</span>
+                        </label>
+                        <apex:outputText value="fieljlkjl" styleClass="slds-text-color_error errmsg" />
+                        <div class="slds-form-element__control">
+                            <apex:input type="date" styleclass="slds-input" value="{!jobExpiry}" style="width:210px;" />
+                        </div>
+                    </div>
+                 </div>
+                  <div class="slds-col slds-size_6-of-12">
+                    <div styleclass="slds-form-element">                                        
+                        <div class="slds-form-element__control"><br/>
+                            <apex:commandButton action="{!setDataPage_1}" value="SAVE & NEXT>>" id="theButton" styleclass="slds-button slds-button_brand"/>
+                        </div>
+                    </div>                   
+                 </div>
+             </div>
+        </div>   
+    </apex:form>   	
+</apex:page>
