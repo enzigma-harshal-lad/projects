@@ -6,6 +6,7 @@
         h1{
         	color:#444444;
         	text-shadow:0px 5px 5px #bbbbbb;
+            	font-weight:thin;
         }
         hr{
         	width:400px;
@@ -46,6 +47,7 @@
             <div align="center">
               <h1 class="slds-text-heading_large">(Git) Job Registration - (Step_1)</h1>
               <h2 class="slds-text-heading_large">Registration</h2>
+              <h2 class="slds-text-heading_large">Registration Form</h2>
             </div> 
         </apex:pageBlock>
          <div style="background:#efefef;border-radius:5px;padding:20px 20px 20px 20px;" class="slds-scope">
