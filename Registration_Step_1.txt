@@ -45,6 +45,7 @@
             </apex:pageBlocksection>         
             <div align="center">
               <h1 class="slds-text-heading_large">(Git) Job Registration - (Step_1)</h1>
+              <h2 class="slds-text-heading_large">Registration</h2>
               <h2 class="slds-text-heading_large">Registration Form</h2>
             </div> 
         </apex:pageBlock>
