@@ -106,7 +106,7 @@ public class ControllerRegistration
                 if(jobExpiry.trim() == ''){ errJobExpiry = 'Field Required';}else{errJobExpiry = '';}
                	if(jobName.trim() == ''){ errJobName = 'Field Required';}else{errJobName = '';}
                 if(jobManager.trim() == ''){ errJobManager = 'Field Required';}else{errJobManager = '';}
-               // if(string.valueof(jobType.trim()) == '--None--'){ errJobType = 'Field Required';}else{errJobType = '';}
+                if(jobType == null){ errJobType = 'Field Required';}else{errJobType = '';}
                
                 if(jobName.trim() != '' && jobManager.trim() != ''  && jobContact.trim() != '' && jobPosition.trim() != '' && jobExpiry.trim() != '')
                 {                  
