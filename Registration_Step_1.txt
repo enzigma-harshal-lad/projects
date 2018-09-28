@@ -44,7 +44,7 @@
                 <apex:image value="https://c.ap4.content.force.com/servlet/servlet.FileDownload?file=0156F00000FRWz0" width="220" height="80"/>              
             </apex:pageBlocksection>         
             <div align="center">
-              <h1 class="slds-text-heading_large">(Git-Hub) Job Registration - (Step 1)</h1>
+              <h1 class="slds-text-heading_large">(Git) Job Registration - (Step 1)</h1>
             </div> 
         </apex:pageBlock>
          <div style="background:#efefef;border-radius:5px;padding:20px 20px 20px 20px;" class="slds-scope">
