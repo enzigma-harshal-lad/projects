@@ -6,7 +6,6 @@
         h1{
         	color:#444444;
         	text-shadow:0px 5px 5px #bbbbbb;
-            	font-weight:thin;
         }
         hr{
         	width:400px;
@@ -45,11 +44,10 @@
                 <apex:image value="https://c.ap4.content.force.com/servlet/servlet.FileDownload?file=0156F00000FRWz0" width="220" height="80"/>              
             </apex:pageBlocksection>         
             <div align="center">
-              <h1 class="slds-text-heading_large">(Git) Job Registration - (Step_1)</h1>
-              <h2 class="slds-text-heading_large">Registration</h2>
-              <h2 class="slds-text-heading_large">Registration Form</h2>
+              <h1 class="slds-text-heading_large">Job Registration - (Step 1)</h1>
             </div> 
         </apex:pageBlock>
+        <apex:messages />
          <div style="background:#efefef;border-radius:5px;padding:20px 20px 20px 20px;" class="slds-scope">
              <div class="slds-grid slds-wrap">
                  <div class="slds-col slds-size_6-of-12">
@@ -68,7 +66,7 @@
                         <label class="slds-form-element__label" for="text-input-id-2">
                            Manager :  <span style="color:red;font-size:large;">*</span> 
                         </label>  
-                       <apex:outputText value="fieljlkjl" styleClass="slds-text-color_error errmsg" />
+                       <apex:outputText value="{!errJobManager}" styleClass="slds-text-color_error errmsg" />
                         <div class="slds-form-element__control">
                             <apex:inputText value="{!jobManager}" styleclass="slds-input" style="width:210px;" ID="text-input-id-2" />
                         </div>
@@ -102,7 +100,7 @@
                             <label class="slds-form-element__label" for="text-input-id-5">
                                 &nbsp;&nbsp;&nbsp;Contact :  <span style="color:red;font-size:large;">*</span>
                             </label>   
-                            <apex:outputText value="fieljlkjl" styleClass="slds-text-color_error errmsg1" />
+                            <apex:outputText value="{!errJobContact}" styleClass="slds-text-color_error errmsg1" />
                             <div class="slds-form-element__control">
                                 <apex:inputText styleclass="slds-input" value="{!jobContact}" style="width:210px;"/>
                             </div> 
@@ -123,7 +121,7 @@
                             <label class="slds-form-element__label" for="text-input-id-7">
                                 &nbsp;&nbsp;&nbsp;No Of position  : <span style="color:red;font-size:large;">*</span>
                             </label>     
-                            <apex:outputText value="fieljlkjl" styleClass="slds-text-color_error errmsg1" />
+                            <apex:outputText value="{!errJobPosition}" styleClass="slds-text-color_error errmsg1" />
                             <div class="slds-form-element__control">
                                 <apex:inputText styleclass="slds-input" value="{!jobPosition}" style="width:210px;" />
                             </div>
@@ -134,7 +132,7 @@
                 		<label class="slds-form-element__label" for="text-input-id-8">
                             Expiry Date : <span style="color:red;font-size:large;">*</span>
                         </label>
-                        <apex:outputText value="fieljlkjl" styleClass="slds-text-color_error errmsg" />
+                        <apex:outputText value="{!errJobExpiry}" styleClass="slds-text-color_error errmsg" />
                         <div class="slds-form-element__control">
                             <apex:input type="date" styleclass="slds-input" value="{!jobExpiry}" style="width:210px;" />
                         </div>
