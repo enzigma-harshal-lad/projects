@@ -1,0 +1,155 @@
+public class ControllerRegistration 
+{
+     //VARIABLES FOR STORING FIELD-VALUE IN COOKIES
+        public string jobName { get; set;}
+        public string jobManager { get; set;}
+        public string jobType { get; set;}
+        public string jobDescription { get; set;}
+        public string jobPosition { get; set;}
+        public string jobExpiry { get; set;}    
+    	public String jobCertification { get; set;}
+    	public String jobQualification { get; set;}
+        public String jobSkill { get; set;}
+        public String jobContact { get; set;}
+        public String jobSalary { get; set;} 
+    
+     //ERROR PROPERTIES
+        public String errJobName { get; set;} 
+   	    public String errJobManager {get;set;}
+    	public String errJobType { get; set;} 
+    	public String errJobContact { get; set;}
+    	public String errJobPosition { get; set;}
+    	public String errJobExpiry { get; set;}
+    
+    	public string getJobName { get; set;}
+        public string getJobManager { get; set;}
+        public string getJobType { get; set;}
+        public string getJobDescription { get; set;}
+        public string getJobPosition { get; set;}
+    	public String getJobSalary { get; set;}
+        public STRING getJobExpiry { get; set;}
+   		public string getJobContact{get;set;}
+      	
+   		Pagereference referenceRegistrationPage_2 {get;set;}
+    
+     //LISTS FOR PICKLISTS
+        public List<SelectOption> jobTypeList {get;set;}
+    	public List<SelectOption> listCertification {get;set;}
+        public List<SelectOption> listQualification {get;set;}
+        public List<SelectOption> listSkill {get;set;}
+    	
+    
+		public ControllerRegistration()
+        {
+            //JOB TYPE
+              jobTypeList = new List<SelectOption>();
+              jobTypeList.add(new SelectOption('','--None--'));
+              jobTypeList.add(new SelectOption('Developer','Developer'));
+              jobTypeList.add(new SelectOption('Manager','Manager'));
+              jobTypeList.add(new SelectOption('Admin','Admin'));
+            
+            //REQUIRED CERTIFICATION
+              listCertification = new List<SelectOption>();
+              listCertification.add(new SelectOption('','--None--'));
+              //For Developer
+              listCertification.add(new SelectOption('ORACLE','ORACLE'));
+              listCertification.add(new SelectOption('SYBASE','SYBASE'));
+              listCertification.add(new SelectOption('MICROSOFT','MICROSOFT'));
+              listCertification.add(new SelectOption('RED-HAT','RED-HAT'));
+              //For Manager
+              listCertification.add(new SelectOption('SUN-CERTIFIED','SUN-CERTIFIED'));
+              listCertification.add(new SelectOption('SAS','SAS'));
+              listCertification.add(new SelectOption('IBM','IBM'));
+              //For Admin
+              listCertification.add(new SelectOption('PMP','PMP'));
+              listCertification.add(new SelectOption('CMP','CMP'));
+              listCertification.add(new SelectOption('MPM','MPM'));
+            
+            //REQUIRED QUALIFICATION
+              listQualification = new List<SelectOption>();
+              listQualification.add(new SelectOption('','--None--'));
+              listQualification.add(new SelectOption('BE','BE'));
+              listQualification.add(new SelectOption('MSC','MSC'));
+              listQualification.add(new SelectOption('BSC','BSC'));
+              listQualification.add(new SelectOption('B.TEC','B.TEC'));
+              listQualification.add(new SelectOption('MBA','MBA'));
+              listQualification.add(new SelectOption('BBA','BBA'));
+            
+            //REQUIRED SKILL
+              listSkill = new List<SelectOption>();
+              listSkill.add(new SelectOption('','--None--'));
+              //FOR DEVELOPER
+              listSkill.add(new SelectOption('C','C'));
+              listSkill.add(new SelectOption('C++','C++'));
+              listSkill.add(new SelectOption('JAVA','JAVA'));
+              listSkill.add(new SelectOption('.NET','.NET'));
+              //FOR ADMIN
+              listSkill.add(new SelectOption('NETWORKING','NETWORKING'));
+              listSkill.add(new SelectOption('LINUX','LINUX'));
+              //FOR MANAGER
+              listSkill.add(new SelectOption('TEAM-PLAYER','TEAM-PLAYER'));
+              listSkill.add(new SelectOption('SELF-MANAGEMENT','SELF-MANAGEMENT'));                
+                         
+        }
+       
+       public  void referToRegister_2()
+       {
+              
+       }
+    
+       public Pagereference setDataPage_1()
+       {  
+           try
+           {                
+                if(jobContact.trim() == ''){ errJobContact = 'Field Required';}else{errJobContact = '';}
+                if(jobPosition.trim() == ''){ errJobPosition = 'Field Required';}else{errJobPosition = '';}
+                if(jobExpiry.trim() == ''){ errJobExpiry = 'Field Required';}else{errJobExpiry = '';}
+               	if(jobName.trim() == ''){ errJobName = 'Field Required';}else{errJobName = '';}
+                if(jobManager.trim() == ''){ errJobManager = 'Field Required';}else{errJobManager = '';}
+               // if(string.valueof(jobType.trim()) == '--None--'){ errJobType = 'Field Required';}else{errJobType = '';}
+               
+                if(jobName.trim() != '' && jobManager.trim() != ''  && jobContact.trim() != '' && jobPosition.trim() != '' && jobExpiry.trim() != '')
+                {                  
+                   referenceRegistrationPage_2 = new Pagereference('/apex/Registration_Step_2?jobName='+jobName+'&jobManager='+jobManager+'&jobType='+jobType+
+               			                               '&jobDescription='+jobDescription+'&jobContact='+jobContact+'&jobSalary='+jobSalary+'&jobPosition='+
+                                                        jobPosition+'&jobExpiry='+jobExpiry);
+                   return referenceRegistrationPage_2;
+                }
+           }
+           catch(Exception ex)
+           {
+                  ApexPages.Message msg = new ApexPages.Message(ApexPages.Severity.WARNING , ex.getMessage());
+                  ApexPages.addMessage(msg);
+           }
+           referenceRegistrationPage_2 = new Pagereference('/apex/Registration_Step_1');
+           return referenceRegistrationPage_2;
+       }    
+       public pagereference setDataPage_2()
+       {        
+            getJobName = apexpages.currentpage().getparameters().get('jobName');
+            getJobManager = apexpages.currentpage().getparameters().get('jobManager');
+            getJobType = apexpages.currentpage().getparameters().get('jobType');
+            getJobDescription = apexpages.currentpage().getparameters().get('jobDescription');
+            getJobContact = apexpages.currentpage().getparameters().get('jobContact');
+            getJobSalary = apexpages.currentpage().getparameters().get('jobSalary');
+            getJobPosition = apexpages.currentpage().getparameters().get('jobPosition');
+            getJobExpiry = apexpages.currentpage().getparameters().get('jobExpiry');
+           
+            Pagereference referenceRegistrationPage_3 = new Pagereference('/apex/Registration_Step_3');
+            Cookie cookieJobName = new Cookie('cookieJobName', getJobName, null, 2, false);
+            Cookie cookieManager = new Cookie('cookieManager', getJobManager, null, 2, false);
+            Cookie cookieJobtype = new Cookie('cookieJobtype', getJobType, null, 2, false);
+            Cookie cookieDescription = new Cookie('cookieDescription', getJobDescription, null, 2, false);
+            Cookie cookieJobPosition = new Cookie('cookieJobPosition', getJobPosition, null, 2, false);
+            Cookie cookieJobExpiry = new Cookie('cookieJobExpiry', getJobExpiry, null, 2, false);
+            Cookie cookieJobContact = new Cookie('cookieJobContact', getJobContact, null, 2, false);
+            Cookie cookieJobSalary = new Cookie('cookieJobSalary', getJobSalary, null, 2, false);
+           
+            Cookie cookieQualification = new Cookie('cookieQualification', jobQualification, null, 2, false);
+            Cookie cookieCertification = new Cookie('cookieCertification', jobCertification, null, 2, false);
+            Cookie cookieSkill = new Cookie('cookieSkill', jobSkill, null, 2, false);
+            referenceRegistrationPage_3.setCookies(new Cookie[] {cookieJobName,cookieManager,cookieJobtype,cookieDescription,cookieQualification,cookieJobPosition,cookieJobExpiry,cookieJobContact,cookieJobSalary,cookieCertification,cookieSkill});
+            return referenceRegistrationPage_3;
+       }
+       
+}
