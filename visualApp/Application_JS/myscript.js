@@ -33,6 +33,7 @@ document.write("Using Local Static Resources");
           link : fieldFunction,
           templateUrl: 'https://localhost/test-dev/template/objectListTemplate.html',
           scope: true
+          
       };
     });
 
